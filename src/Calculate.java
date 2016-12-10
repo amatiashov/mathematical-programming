@@ -176,9 +176,9 @@ public class Calculate {
     private void stripZero(StringWrapper string){
         String s = string.getValue();
         StringBuffer buffer = new StringBuffer();
+        boolean firstValueIsZero = true;
         for (int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            boolean firstValueIsZero = true;
             if (Character.isDigit(c)){
                 if (c == '0' && firstValueIsZero)
                     continue;
