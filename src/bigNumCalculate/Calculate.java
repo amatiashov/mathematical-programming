@@ -142,6 +142,21 @@ public class Calculate {
     public String multiplication(String firstNumber, String secondNumber){
         if (firstNumber.equals("0") || secondNumber.equals("0"))
             return "0";
+
+        char c1 = firstNumber.charAt(0);
+        char c2 = secondNumber.charAt(0);
+
+        boolean needMinus = false;
+
+        if (c1 == '-' && c2 == '-'){
+            firstNumber = firstNumber.replace("-", "");
+            secondNumber = secondNumber.replace("-", "");
+        } else if (c1 == '-' && c2 != '-' || c1 != '-' && c2 == '-'){
+            needMinus = true;
+            firstNumber = firstNumber.replace("-", "");
+            secondNumber = secondNumber.replace("-", "");
+        }
+
         String result = "0";
         ArrayList<String> arrayMull = new ArrayList<String>();
         for (int i = secondNumber.length()-1; i >= 0 ; i--){
@@ -158,6 +173,8 @@ public class Calculate {
         while (!arrayMull.isEmpty()){
             result = plusOperation(result, arrayMull.remove(0));
         }
+        if (needMinus)
+            result = "-" + result;
         return result;
     }
 
