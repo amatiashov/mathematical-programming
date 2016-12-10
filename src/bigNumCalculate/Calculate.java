@@ -1,27 +1,14 @@
+package bigNumCalculate;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
+
 public class Calculate {
-    public static void main(String... args) throws IOException {
-        String result = null;
-        Calculate calculate = new Calculate();
 
-        String firstNumber = calculate.enterNumber("Enter first number ");
-        String secondNumber = calculate.enterNumber("Enter second number ");
-        System.out.printf("Enter operation (+ - * /) : ");
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String operator = reader.readLine();
-        if (operator.equals("+"))
-            result = calculate.plusOperation(firstNumber, secondNumber);
-        else if (operator.equals("-"))
-            result = calculate.minusOperation(firstNumber, secondNumber);
-        System.out.println("Result = " + result);
-
-    }
-
-    private String minusOperation(String firstNumber, String secondNumber) {
+    public String minusOperation(String firstNumber, String secondNumber) {
         if (firstNumber == null)
             firstNumber = "0";
         if (secondNumber.isEmpty())
@@ -81,7 +68,7 @@ public class Calculate {
         return result;
     }
 
-    private String plusOperation(String firstNumber, String secondNumber) {
+    public String plusOperation(String firstNumber, String secondNumber) {
         if (firstNumber.isEmpty())
             return secondNumber;
         if (secondNumber.isEmpty())
@@ -117,29 +104,6 @@ public class Calculate {
             buffer.append(transfer);
         buffer.reverse();
         result = buffer.toString();
-        return result;
-    }
-
-    private String enterNumber(String message) throws IOException {
-        StringBuffer number = new StringBuffer();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.printf(message + ": ");
-        String tmp = reader.readLine();
-
-        boolean firstValueIsZero = true;
-        for (int i = 0; i < tmp.length(); i++){
-            Character c = tmp.charAt(i);
-            if (!Character.isDigit(c)){
-                throw new RuntimeException("Enter value is not number");
-            }
-            if (c == '0' && firstValueIsZero)
-                continue;
-            firstValueIsZero = false;
-            number.append(c);
-        }
-        String result = number.toString();
-        if (result.isEmpty())
-            return null;
         return result;
     }
 
@@ -195,22 +159,5 @@ public class Calculate {
         else
             string.setValue(result);
 
-    }
-}
-
-
-class StringWrapper{
-    private String value;
-
-    StringWrapper(String string){
-        this.value = string;
-    }
-
-    public void setValue(String string){
-        this.value = string;
-    }
-
-    public String getValue(){
-        return this.value;
     }
 }
