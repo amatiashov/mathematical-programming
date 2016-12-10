@@ -29,7 +29,7 @@ public class Calculate {
         for (int i = 0; i < firstNumber.length(); i++) {
             char c1 = firstNumber.charAt(i);
             char c2 = secondNumber.charAt(i);
-            if (c1 < c2) {
+            if (c1 < c2 && firstNumber.charAt(0) < secondNumber.charAt(0)) {
                 needMinus = true;
                 break;
             }
