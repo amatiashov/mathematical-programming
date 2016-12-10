@@ -22,7 +22,7 @@ public class Calculate {
     }
 
     private String minusOperation(String firstNumber, String secondNumber) {
-        if (firstNumber.isEmpty())
+        if (firstNumber == null)
             firstNumber = "0";
         if (secondNumber.isEmpty())
             return firstNumber;
