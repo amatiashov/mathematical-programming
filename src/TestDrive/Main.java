@@ -21,6 +21,8 @@ public class Main {
             result = calculate.plusOperation(firstNumber, secondNumber);
         else if (operator.equals("-"))
             result = calculate.minusOperation(firstNumber, secondNumber);
+        else if (operator.equals("*"))
+            result = calculate.multiplication(firstNumber, secondNumber);
         System.out.println("Result = " + result);
 
     }

@@ -1,6 +1,8 @@
 package bigNumCalculate;
 
 
+import java.util.ArrayList;
+
 public class Calculate {
 
     public String minusOperation(String firstNumber, String secondNumber) {
@@ -99,6 +101,28 @@ public class Calculate {
             buffer.append(transfer);
         buffer.reverse();
         result = buffer.toString();
+        return result;
+    }
+
+    public String multiplication(String firstNumber, String secondNumber){
+        if (firstNumber.equals("0") || secondNumber.equals("0"))
+            return "0";
+        String result = "0";
+        ArrayList<String> arrayMull = new ArrayList<String>();
+        for (int i = secondNumber.length()-1; i >= 0 ; i--){
+            StringBuffer buffer = new StringBuffer();
+            String auxiliaryLine = "";
+            for (int j = 0; j < secondNumber.length()-i-1; j++)
+                auxiliaryLine += "0";
+            String mul = String.valueOf(secondNumber.charAt(i));
+            buffer.append(simpleMultiplication(firstNumber, mul));
+            buffer.append(auxiliaryLine);
+            arrayMull.add(buffer.toString());
+        }
+
+        while (!arrayMull.isEmpty()){
+            result = plusOperation(result, arrayMull.remove(0));
+        }
         return result;
     }
 
