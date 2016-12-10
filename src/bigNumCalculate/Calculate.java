@@ -71,7 +71,23 @@ public class Calculate {
         if (secondNumber.isEmpty())
             return firstNumber;
 
-        String result = null;
+        boolean needMinus = false;
+
+        if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) != '-'){
+            firstNumber = firstNumber.replace('-', '0');
+            return minusOperation(secondNumber, firstNumber);
+        }
+        if (firstNumber.charAt(0) != '-' && secondNumber.charAt(0) == '-'){
+            secondNumber = secondNumber.replace('-', '0');
+            return minusOperation(firstNumber, secondNumber);
+        }
+        if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) == '-') {
+            firstNumber = firstNumber.replace('-', '0');
+            secondNumber = secondNumber.replace('-', '0');
+            needMinus = true;
+        }
+
+        String result;
         int transfer = 0;
 
         StringWrapper first = new StringWrapper(firstNumber);
@@ -99,9 +115,13 @@ public class Calculate {
         }
         if (transfer > 0)
             buffer.append(transfer);
+        if (needMinus)
+            buffer.append('-');
         buffer.reverse();
         result = buffer.toString();
-        return result;
+        StringWrapper wrapper = new StringWrapper(result);
+        stripZero(wrapper);
+        return wrapper.getValue();
     }
 
     public String multiplication(String firstNumber, String secondNumber){
