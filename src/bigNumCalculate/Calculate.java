@@ -102,6 +102,32 @@ public class Calculate {
         return result;
     }
 
+    private String simpleMultiplication(String number, String mull){
+        String result;
+        StringBuffer buffer = new StringBuffer();
+
+        int mul = Integer.parseInt(mull);
+        int transfer = 0;
+        for (int i = number.length()-1; i >= 0; i--){
+            int x = Integer.parseInt(String.valueOf(number.charAt(i)));
+            int tmp = x * mul + transfer;
+            buffer.append(tmp % 10);
+            String tmpString = String.valueOf(tmp);
+            if (tmpString.length() > 1){
+                transfer = Integer.parseInt(String.valueOf(tmpString.charAt(0)));
+            } else
+                transfer = 0;
+        }
+        if (transfer > 0)
+            buffer.append(transfer);
+        buffer.reverse();
+
+        StringWrapper wrapper = new StringWrapper(buffer.toString());
+        stripZero(wrapper);
+        result = wrapper.getValue();
+        return result;
+    }
+
     private void lengthСomparison(StringWrapper first, StringWrapper second){
         String firstNumber = first.getValue();
         String secondNumber = second.getValue();
