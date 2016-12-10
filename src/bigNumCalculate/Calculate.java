@@ -11,6 +11,21 @@ public class Calculate {
         if (secondNumber.isEmpty())
             return firstNumber;
 
+        if (firstNumber.charAt(0) != '-' && secondNumber.charAt(0) == '-'){
+            secondNumber = secondNumber.replace("-", "");
+            return plusOperation(firstNumber, secondNumber);
+        }
+        if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) != '-'){
+            firstNumber = firstNumber.replace("-", "");
+            return '-' + plusOperation(firstNumber, secondNumber);
+        }
+        if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) == '-'){
+            firstNumber = firstNumber.replace("-", "");
+            secondNumber = secondNumber.replace("-", "");
+            return minusOperation(secondNumber, firstNumber);
+        }
+
+
         String result;
 
         // *******************************
@@ -74,16 +89,16 @@ public class Calculate {
         boolean needMinus = false;
 
         if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) != '-'){
-            firstNumber = firstNumber.replace('-', '0');
+            firstNumber = firstNumber.replace("-", "");
             return minusOperation(secondNumber, firstNumber);
         }
         if (firstNumber.charAt(0) != '-' && secondNumber.charAt(0) == '-'){
-            secondNumber = secondNumber.replace('-', '0');
+            secondNumber = secondNumber.replace("-", "");
             return minusOperation(firstNumber, secondNumber);
         }
         if (firstNumber.charAt(0) == '-' && secondNumber.charAt(0) == '-') {
-            firstNumber = firstNumber.replace('-', '0');
-            secondNumber = secondNumber.replace('-', '0');
+            firstNumber = firstNumber.replace("-", "");
+            secondNumber = secondNumber.replace("-", "");
             needMinus = true;
         }
 
