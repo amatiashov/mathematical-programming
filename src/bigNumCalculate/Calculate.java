@@ -134,9 +134,7 @@ public class Calculate {
             buffer.append('-');
         buffer.reverse();
         result = buffer.toString();
-        StringWrapper wrapper = new StringWrapper(result);
-        stripZero(wrapper);
-        return wrapper.getValue();
+        return result;
     }
 
     public String multiplication(String firstNumber, String secondNumber){
