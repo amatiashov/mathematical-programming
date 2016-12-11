@@ -17,13 +17,19 @@ public class Main {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String operator = reader.readLine();
+        long start = System.currentTimeMillis();
         if (operator.equals("+"))
             result = calculate.plusOperation(firstNumber, secondNumber);
         else if (operator.equals("-"))
             result = calculate.minusOperation(firstNumber, secondNumber);
         else if (operator.equals("*"))
             result = calculate.multiplication(firstNumber, secondNumber);
+        long time = System.currentTimeMillis() - start;
         System.out.println("Result = " + result);
+        System.out.println("--------------------------------------");
+        System.out.println("Length first number: " + firstNumber.length());
+        System.out.println("Length second number: " + secondNumber.length());
+        System.out.println("Runtime = " + time + " ms");
 
     }
 
