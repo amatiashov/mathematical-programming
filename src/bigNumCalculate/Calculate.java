@@ -159,9 +159,9 @@ public class Calculate {
         ArrayList<String> arrayMull = new ArrayList<String>();
         for (int i = secondNumber.length()-1; i >= 0 ; i--){
             StringBuffer buffer = new StringBuffer();
-            String auxiliaryLine = "";
+            StringBuffer auxiliaryLine = new StringBuffer();
             for (int j = 0; j < secondNumber.length()-i-1; j++)
-                auxiliaryLine += "0";
+                auxiliaryLine.append('0');
             String mul = String.valueOf(secondNumber.charAt(i));
             buffer.append(simpleMultiplication(firstNumber, mul));
             buffer.append(auxiliaryLine);
