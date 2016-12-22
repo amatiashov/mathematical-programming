@@ -202,6 +202,46 @@ public class Calculate {
         return result;
     }
 
+    public int compare(String firstNumber, String secondNumber){
+        /**
+         * если firstNumber = secondNumber => return 0
+         * если firstNumber > secondNumber => return 1
+         * если firstNumber < secondNumber => return -1
+         */
+        // *******************************
+        // удаляем нули впереди, если они есть
+        StringWrapper first = new StringWrapper(firstNumber);
+        StringWrapper second = new StringWrapper(secondNumber);
+
+        stripZero(first);
+        stripZero(second);
+
+        firstNumber = first.getValue();
+        secondNumber = second.getValue();
+        // *******************************
+
+        if (firstNumber.length() > secondNumber.length())
+            return 1;
+        else if (firstNumber.length() < secondNumber.length())
+            return -1;
+
+        // выравниваем длину строки
+        lengthСomparison(first, second);
+        firstNumber = first.getValue();
+        secondNumber = second.getValue();
+
+
+        for (int i = 0; i < firstNumber.length(); i++){
+            char c1 = firstNumber.charAt(i);
+            char c2 = secondNumber.charAt(i);
+            if (c1 > c2)
+                return 1;
+            if (c1 < c2)
+                return -1;
+        }
+        return 0;
+    }
+
     private void lengthСomparison(StringWrapper first, StringWrapper second){
         String firstNumber = first.getValue();
         String secondNumber = second.getValue();
