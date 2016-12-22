@@ -202,6 +202,47 @@ public class Calculate {
         return result;
     }
 
+    public String division(String firstNumber, String secondNumber, int limitOfSymbolAfterComma){
+        // *******************************
+        // удаляем нули впереди, если они есть
+        StringWrapper first = new StringWrapper(firstNumber);
+        StringWrapper second = new StringWrapper(secondNumber);
+
+        stripZero(first);
+        stripZero(second);
+
+        firstNumber = first.getValue();
+        secondNumber = second.getValue();
+        // *******************************
+
+        int i = 0;
+        int j = 1;
+        int lenghtFirstNumber = firstNumber.length();
+        boolean hasComma = false;
+        StringBuffer buf = new StringBuffer();
+
+        while (i < limitOfSymbolAfterComma){
+            // выделяем подстроку
+            String subString = firstNumber.substring(i, j);
+            while (compare(subString, secondNumber) == -1 && j < lenghtFirstNumber){
+                subString = firstNumber.substring(i, j++);
+            }
+            if (compare(subString, secondNumber) == -1)
+                break;
+            i = j;
+            int mul = 1;
+            System.out.println("substring : " + subString);
+            while (compare(simpleMultiplication(secondNumber, String.valueOf(mul)), subString) < 1)
+               mul++;
+            buf.append(--mul);
+        }
+        return buf.toString();
+    }
+
+    public String division(String firstNumber, String secondNumber){
+        return division(firstNumber, secondNumber, 9);
+    }
+
     public int compare(String firstNumber, String secondNumber){
         /**
          * если firstNumber = secondNumber => return 0

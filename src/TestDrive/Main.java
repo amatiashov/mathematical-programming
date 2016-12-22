@@ -13,6 +13,11 @@ public class Main {
 
         String firstNumber = enterNumber("Enter first number ");
         String secondNumber = enterNumber("Enter second number ");
+
+        System.out.println(calculate.division(firstNumber, secondNumber));
+        if (true)
+            return;
+
         System.out.printf("Enter operation (+ - * /) : ");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
